@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     output$distPlot <- renderPlot({
 
         
-        data <- read.csv('GAS-DATA-AS-CSV.csv.bz2')
+        data <- read.csv('../GAS-DATA-AS-CSV2.csv')
         data2 <- data %>% 
             pivot_longer(
                 contains("x"),
