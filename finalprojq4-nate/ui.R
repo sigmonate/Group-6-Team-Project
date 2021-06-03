@@ -3,7 +3,10 @@ library(shiny)
 
 
 shinyUI(navbarPage("Gas Prices in US Cities",
-    tabPanel("Introduction"),
+    tabPanel("Introduction",
+        textOutput("introTextOutput"),
+        img(src = "gas.image.jpg", height = 425, width = 640)
+    ),
     tabPanel("City vs City Gas Price Relationship Over Time",
         # Sidebar with a slider input for number of bins
         sidebarLayout(
@@ -21,8 +24,7 @@ shinyUI(navbarPage("Gas Prices in US Cities",
                                             "Houston" = 'Houston', "Los Angeles" = 'LosAngeles',
                                             "Miami" = 'Miami', "New York" = 'NewYork',
                                             "San Francisco" = 'SanFrancisco', "Seattle" = 'Seattle'),
-                            selected = "Boston"),
-            
+                            selected = "Boston")
             ),
             # Show a plot of the generated distribution
             mainPanel(
@@ -40,9 +42,12 @@ shinyUI(navbarPage("Gas Prices in US Cities",
                                                                     "Los Angeles" = 'Los.Angeles..CA', "Miami" = 'Miami..FL.',
                                                                     "New York" = 'New.York..NY', "San Francisco" = 'San.Francisco..CA', 
                                                                     "Seattle" = 'Seattle..WA.'), selected = 'Boston..MA.')
-                ),
+            ),
             mainPanel(
-                tableOutput("GasData")
+                tableOutput("GasData"),
+                tableOutput("gasmaxTable"),
+                tableOutput("gasminTable"),
+                textOutput("thirdTextOutput")
             )
         )
     ),
@@ -72,7 +77,6 @@ shinyUI(navbarPage("Gas Prices in US Cities",
         )
     ),
     tabPanel("Conclusion",
-        tableOutput("gasmaxTable"),
-        tableOutput("gasminTable"),
+        textOutput("concTextOutput")
     )
 ))

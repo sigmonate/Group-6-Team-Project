@@ -67,14 +67,8 @@ shinyServer(function(input, output) {
         the chart. Meanwhile, if the cities were fluctuating together, the points
         should form a roughly linear trend. As you can see, every comparison between
         two cities is roughly linear. In some cases the correlation is incredibly
-        strong. This correlation can also be seen in the two tables displayed above,
-        the first of which shows when the highest gas prices were recorded in each
-        city, and the second showing when each city recorded their lowest gas prices.
-        These tables both demonstrate that gas prices across American cities fluctuate
-        together. For instance, it can be seen that six cities recorded their highest
-        gas prices in July of 2008, while four cities recorded their lowest gas
-        prices in December of 2001. These charts and tables thus lend support to
-        an answer to our question: the cities fluctuate together, not independently.")
+        strong. This chart thus lends support to an answer to our question: the
+        cities fluctuate together, not independently.")
     })
     
     data <- read.delim("US_GAS_GB_original_Data_Used.csv", sep = ',')
@@ -170,35 +164,34 @@ shinyServer(function(input, output) {
     })  
     
     output$thirdTextOutput <- renderText({
-        paste("In the following tables, we can see the differences between gas prices in different cities, we can 
-              compere each city to see the difference between the lowest and highest price, and to see all the lowest and
-              highest points as well. From these tables we can conclude that Los Angeles has the highest difference between 
-              the lowest and highest gas prices values standing at a 3.47$ difference. It is also important to notice that 
+        paste("In the following tables, we can see the differences between gas prices in different cities. With these tables, we can 
+              compare each city to see the difference between the lowest and highest price, and to see all the lowest and
+              highest points as well. From these tables, we can conclude that Los Angeles has the highest difference between 
+              the lowest and highest gas price values standing at a 3.47$ difference. It is also important to notice that 
               San Francisco is following close behind at 3.21$. When considering the data of the lowest prices recorded 
               per city, it is important to take into consideration that Boston, Cleveland, Miami and Seattle only started
               recording their data into this data set from June 2003, while Chicago, Denver, Houston, Los Angeles, New York
               and San Francisco started recording their data from June 2000. We can see that most cites have their highest 
               value recorded in July 2008, probably due to the 2008 financial crisis (see the following for more reference: 
               https://www.investopedia.com/ask/answers/052715/how-did-financial-crisis-affect-oil-and-gas-sector.asp). 
-              Miami and Chicago are anomalies in within this context having their highest values recorded in a 
-              different year (2017 and 2011 respectively)
-")
+              Miami and Chicago are anomalies in this context, with their highest values being recorded in a 
+              different year (2017 and 2011, respectively).")
     }) 
     
     output$introTextOutput <- renderText({
-        paste("In app, you will be able to review the data of average gas prices in main cities in the US, main dataset our 
+        paste("In this app, you will be able to review the data of average gas prices in main cities in the US. The main dataset our 
               app utilizes is from the US Energy Information Administration. See the link if needed: 
               https://www.eia.gov/dnav/pet/pet_pri_gnd_a_epm0_pte_dpgal_m.htm. Our target audience is consumers of driving age 
-              located in urban areas in the US. Using our app you will be able to see the How gas prices have changed in 
-              urban areas in the US over time, when was each city's gas prices at their highest and lowest points, which cities 
-              experience the highest rates of increases in gas prices and do cities usually fluctuate together or independently 
-              in their gas prices. The main libraries we used to make this app where Shiny, tidyverse and ggplot2")
+              located in urban areas in the US. Using our app, you will be able to see how gas prices have changed in 
+              urban areas in the US over time, when each city's gas prices were at their highest and lowest prices, which cities 
+              have experienced the highest rates of increases in gas prices, and whether cities' gas prices usually fluctuate
+              together or independently. The main libraries we used to make this app were shiny, tidyverse and ggplot2.")
     }) 
     
     output$concTextOutput <- renderText({
-        paste("From the informatoin colledted in our app, when can conclude some very important inforamtoin. We can see
-              that mostain cites in the US have a fearily linear incresase in gas prices over the years, and that the 2008
-              financial cireses had a very big effect on gas prices.")
+        paste("From the information collected in our app, we can conclude some very important information. We can see
+              that most cities in the US have a fairly linear increase in gas prices over the years, and that the 2008
+              financial crisis had a very big effect on gas prices.")
     }) 
     
 }
