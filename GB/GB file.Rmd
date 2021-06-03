@@ -1,0 +1,33 @@
+---
+title: "Stat311 Sp 21 R Assignment 4 Solutions"
+author: "GB"
+date: "06/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(dplyr)
+library(ggplot2)
+library(rbokeh)
+library(maps)
+#source("")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+data <- read.delim("US_GAS_GB_original_Data_Used.csv", sep = ',')
+data2 <- select(data, - Date, -X, -X.1, -X.2)
+
+Minimum <- sapply(data2,min, na.rm = TRUE)
+Maximum <- sapply(data2,max, na.rm = TRUE)
+Diffrence <- Maximum - Minimum
+min_frame <- as.data.frame(Minimum)
+max_frame <- as.data.frame(Maximum)
+Dif_frame <- as.data.frame(Diffrence)
+
+main_set <-bind_cols(min_frame, max_frame, Dif_frame)
+
+
+```
