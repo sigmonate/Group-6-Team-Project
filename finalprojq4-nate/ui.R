@@ -2,7 +2,8 @@ library(shiny)
 
 
 
-shinyUI(navbarPage("Group 6 Project",
+shinyUI(navbarPage("Gas Prices in US Cities",
+    tabPanel("Introduction"),
     tabPanel("City vs City Gas Price Relationship Over Time",
         # Sidebar with a slider input for number of bins
         sidebarLayout(
@@ -26,8 +27,6 @@ shinyUI(navbarPage("Group 6 Project",
             # Show a plot of the generated distribution
             mainPanel(
                 plotOutput("distPlot"),
-                tableOutput("gasmaxTable"),
-                tableOutput("gasminTable"),
                 textOutput("textOutput")
             )
         )
@@ -46,5 +45,9 @@ shinyUI(navbarPage("Group 6 Project",
                 tableOutput("GasData")
             )
         )
+    ),
+    tabPanel("Conclusion",
+        tableOutput("gasmaxTable"),
+        tableOutput("gasminTable"),
     )
 ))

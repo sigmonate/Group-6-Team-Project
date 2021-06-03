@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     output$distPlot <- renderPlot({
 
         
-        data <- read.csv('../GAS-DATA-AS-CSV2.csv')
+        data <- read.csv('GAS-DATA-AS-CSV2.csv')
         data2 <- data %>% 
             pivot_longer(
                 contains("x"),
@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
     
     output$gasmaxTable <- renderTable({
         
-        gas.data <- read.csv('../data/gas.data.reformatted.csv')
+        gas.data <- read.csv('gas.data.reformatted.csv')
         
         max.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
 
     output$gasminTable <- renderTable({
         
-        gas.data <- read.csv('../data/gas.data.reformatted.csv')
+        gas.data <- read.csv('gas.data.reformatted.csv')
         
         min.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -77,7 +77,7 @@ shinyServer(function(input, output) {
         an answer to our question: the cities fluctuate together, not independently.")
     })
     
-    data <- read.delim("../GB/US_GAS_GB_original_Data_Used.csv", sep = ',')
+    data <- read.delim("US_GAS_GB_original_Data_Used.csv", sep = ',')
     data2 <- select(data, - Date, -X, -X.1, -X.2)
     
     Minimum <- sapply(data2,min, na.rm = TRUE)
