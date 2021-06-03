@@ -76,5 +76,29 @@ shinyServer(function(input, output) {
         prices in December of 2001. These charts and tables thus lend support to
         an answer to our question: the cities fluctuate together, not independently.")
     })
+    
+    data <- read.delim("../GB/US_GAS_GB_original_Data_Used.csv", sep = ',')
+    data2 <- select(data, - Date, -X, -X.1, -X.2)
+    
+    Minimum <- sapply(data2,min, na.rm = TRUE)
+    Maximum <- sapply(data2,max, na.rm = TRUE)
+    Diffrence <- Maximum - Minimum
+    min_frame <- as.data.frame(Minimum)
+    max_frame <- as.data.frame(Maximum)
+    Dif_frame <- as.data.frame(Diffrence)
+    
+    main_set <-bind_cols(min_frame, max_frame, Dif_frame)
+    
+    
+    sample2 <- reactive({
+        main_set
+    })
+        
+    output$GasData <- renderTable({
+        cityFilter <- main_set[input$city,] 
+    
+    })
+    
+    
 }
 )

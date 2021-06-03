@@ -1,7 +1,7 @@
 library(shiny)
 
 fluidPage(
-    titlePanel("US gas price diffrence"),
+    titlePanel("US gas price difference"),
     sidebarLayout(
         sidebarPanel(
             #checkboxInput("checkbox", label = "Choice A", value = TRUE),

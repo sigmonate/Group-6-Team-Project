@@ -32,10 +32,4 @@ shinyServer(function(input, output) {
       
     })
     
-
 })
-
-
-
-
-

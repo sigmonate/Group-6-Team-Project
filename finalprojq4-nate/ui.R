@@ -31,5 +31,20 @@ shinyUI(navbarPage("Group 6 Project",
                 textOutput("textOutput")
             )
         )
+    ),
+    tabPanel("Differences in US City Gas Prices",
+        sidebarLayout(
+            sidebarPanel(
+                #checkboxInput("checkbox", label = "Choice A", value = TRUE),
+                selectInput("city", "Select a city", choices = list("Boston" = 'Boston..MA.', "Chicago" = 'Chicago..IL', "Cleveland" = 'Cleveland..OH.', 
+                                                                    "Denver" = 'Denver..CO', "Houston" = 'Houston..TX', 
+                                                                    "Los Angeles" = 'Los.Angeles..CA', "Miami" = 'Miami..FL.',
+                                                                    "New York" = 'New.York..NY', "San Francisco" = 'San.Francisco..CA', 
+                                                                    "Seattle" = 'Seattle..WA.'), selected = 'Boston..MA.')
+                ),
+            mainPanel(
+                tableOutput("GasData")
+            )
+        )
     )
 ))
