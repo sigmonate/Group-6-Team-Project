@@ -7,7 +7,7 @@ shinyServer(function(input, output) {
     output$firstDistPlot <- renderPlot({
         
         
-        data <- read.csv('GAS-DATA-AS-CSV2.csv')
+        data <- read.csv('data/Data-1.csv')
         data2 <- data %>% 
             pivot_longer(
                 contains("x"),
@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
     
     output$gasmaxTable <- renderTable({
         
-        gas.data <- read.csv('gas.data.reformatted.csv')
+        gas.data <- read.csv('data/Data-2.csv')
         
         max.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
     
     output$gasminTable <- renderTable({
         
-        gas.data <- read.csv('gas.data.reformatted.csv')
+        gas.data <- read.csv('data/Data-2.csv')
         
         min.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -71,15 +71,15 @@ shinyServer(function(input, output) {
         cities fluctuate together, not independently.")
     })
     
-    data <- read.delim("US_GAS_GB_original_Data_Used.csv", sep = ',')
-    data2 <- select(data, - Date, -X, -X.1, -X.2)
+    #data4 <- read.csv('Data-3.csv', sep = ',')
+    data4 <- select(data, - Date, -X, -X.1, -X.2)
     
-    Minimum <- sapply(data2,min, na.rm = TRUE)
-    Maximum <- sapply(data2,max, na.rm = TRUE)
-    Diffrence <- Maximum - Minimum
+    Minimum <- sapply(data4,min, na.rm = TRUE)
+    Maximum <- sapply(data4,max, na.rm = TRUE)
+    Difference <- Maximum - Minimum
     min_frame <- as.data.frame(Minimum)
     max_frame <- as.data.frame(Maximum)
-    Dif_frame <- as.data.frame(Diffrence)
+    Dif_frame <- as.data.frame(Difference)
     
     main_set <-bind_cols(min_frame, max_frame, Dif_frame)
     
@@ -95,7 +95,7 @@ shinyServer(function(input, output) {
     
     output$secondDistPlot <- renderPlot({
         
-        data <- read.csv('GAS-DATA-AS-CSV2.csv')
+        data <- read.csv('data/Data-1.csv')
         data2 <- data %>% 
             pivot_longer(
                 contains("x"),
