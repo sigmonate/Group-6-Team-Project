@@ -7,27 +7,27 @@ shinyServer(function(input, output) {
     output$firstDistPlot <- renderPlot({
         
         
-        data <- read.csv('data/Data-1.csv')
-        data2 <- data %>% 
-            pivot_longer(
-                contains("x"),
-                names_to = "date",
-                values_to = "price",
-                names_repair = "unique"
-            ) %>% 
-            mutate(date = substr(date, 2, 10))
-        data3 <- data2 %>% 
-            pivot_wider(date,
-                        names_from = "City",
-                        values_from = "price") %>%
-            select(-date)
+        data <- read.csv('Data-1.csv')
+        # data2 <- data %>% 
+        #     pivot_longer(
+        #         contains("x"),
+        #         names_to = "date",
+        #         values_to = "price",
+        #         names_repair = "unique"
+        #     ) %>% 
+        #     mutate(date = substr(date, 2, 10))
+        # data3 <- data2 %>% 
+        #     pivot_wider(date,
+        #                 names_from = "City",
+        #                 values_from = "price") %>%
+        #     select(-date)
         
         
         x <- input$Cityone
         y<- input$Citytwo
         
         
-        ggplot(data3,aes_string(x, y))+
+        ggplot(data,aes_string(x, y))+
             geom_point(col = "blue")+
             xlab(paste("Price in", input$Cityone))+
             ylab(paste("Price in", input$Citytwo))+
@@ -38,7 +38,7 @@ shinyServer(function(input, output) {
     
     output$gasmaxTable <- renderTable({
         
-        gas.data <- read.csv('data/Data-2.csv')
+        gas.data <- read.csv('Data-2.csv')
         
         max.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -49,7 +49,7 @@ shinyServer(function(input, output) {
     
     output$gasminTable <- renderTable({
         
-        gas.data <- read.csv('data/Data-2.csv')
+        gas.data <- read.csv('Data-2.csv')
         
         min.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -71,11 +71,11 @@ shinyServer(function(input, output) {
         cities fluctuate together, not independently.")
     })
     
-    #data4 <- read.csv('Data-3.csv', sep = ',')
-    data4 <- select(data, - Date, -X, -X.1, -X.2)
+    #data4 <- read.csv('Data-2.csv', sep = ',')
+    data5 <- select(data, -Date)
     
-    Minimum <- sapply(data4,min, na.rm = TRUE)
-    Maximum <- sapply(data4,max, na.rm = TRUE)
+    Minimum <- sapply(data5,min, na.rm = TRUE)
+    Maximum <- sapply(data5,max, na.rm = TRUE)
     Difference <- Maximum - Minimum
     min_frame <- as.data.frame(Minimum)
     max_frame <- as.data.frame(Maximum)
@@ -95,20 +95,20 @@ shinyServer(function(input, output) {
     
     output$secondDistPlot <- renderPlot({
         
-        data <- read.csv('data/Data-1.csv')
-        data2 <- data %>% 
-            pivot_longer(
-                contains("x"),
-                names_to = "date",
-                values_to = "price",
-                names_repair = "unique"
-            ) %>% 
-            mutate(date = substr(date, 2, 10))
-        data3 <- data2 %>% 
-            pivot_wider(date,
-                        names_from = "City",
-                        values_from = "price") %>%
-            separate(date, c("month", "year")) %>%
+        data <- read.csv('Data-1.csv')
+        # data2 <- data %>% 
+        #     pivot_longer(
+        #         contains("x"),
+        #         names_to = "date",
+        #         values_to = "price",
+        #         names_repair = "unique"
+        #     ) %>% 
+        #     mutate(date = substr(date, 2, 10))
+        data3 <- data %>% 
+            #pivot_wider(date,
+             #           names_from = "City",
+              #          values_from = "price") %>%
+            separate(date, c("month", "year"), sep = "-") %>%
             filter(year == input$date) %>%
             select(input$Cityone, month) 
         
