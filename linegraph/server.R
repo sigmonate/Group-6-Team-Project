@@ -30,37 +30,48 @@ shinyServer(function(input, output) {
         data3$month = factor(data3$month, levels = month.abb)
 
         y <- input$Cityone
+        
+        
         if (input$Cityone == "Chicago") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Chicago))
+                geom_point(mapping = aes(x = month, Chicago)) +
+                geom_line(mapping = aes(x = as.numeric(month), Chicago), color="red")
         } else if (input$Cityone == "Seattle") {
             ggplot(data3) +
                 geom_point(mapping = aes(x = month, Seattle)) +
                 geom_line(mapping = aes(x = as.numeric(month), Seattle), color="red")
         } else if (input$Cityone == "Boston") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Boston))
+                geom_point(mapping = aes(x = month, Boston)) +
+                geom_line(mapping = aes(x = as.numeric(month), Boston), color="red")
         } else if (input$Cityone == "Denver") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Denver))
+                geom_point(mapping = aes(x = month, Denver)) +
+                geom_line(mapping = aes(x = as.numeric(month), Denver), color="red")
         } else if (input$Cityone == "Cleveland") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Cleveland))
+                geom_point(mapping = aes(x = month, Cleveland)) +
+                geom_line(mapping = aes(x = as.numeric(month), Cleveland), color="red")
         } else if (input$Cityone == "Houston") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Houston))
+                geom_point(mapping = aes(x = month, Houston)) +
+                geom_line(mapping = aes(x = as.numeric(month), Houston), color="red")
         } else if (input$Cityone == "LosAngeles") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, LosAngeles))
+                geom_point(mapping = aes(x = month, LosAngeles)) +
+                geom_line(mapping = aes(x = as.numeric(month), LosAngeles), color="red")
         } else if (input$Cityone == "Miami") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Miami))
+                geom_point(mapping = aes(x = month, Miami)) +
+                geom_line(mapping = aes(x = as.numeric(month), Miami), color="red")
         } else if (input$Cityone == "NewYork") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, NewYork))
+                geom_point(mapping = aes(x = month, NewYork)) +
+                geom_line(mapping = aes(x = as.numeric(month), NewYork), color="red")
         } else if (input$Cityone == "SanFrancisco") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, SanFrancisco))
+                geom_point(mapping = aes(x = month, SanFrancisco)) +
+                geom_line(mapping = aes(x = as.numeric(month), SanFrancisco), color="red")
         } 
         
         #x <- input$date
@@ -73,7 +84,7 @@ shinyServer(function(input, output) {
     output$textOutput <- renderText({
         paste("This chart was designed to answer the question: 'How gas prices have changed in urban areas in 
               the US over time?' To answer this a chart was created to display the monthly gas prices in a some
-              of the major cities in the United States, starting in 2000. Each point represents the price of gas at
+              of the major cities in the United States, starting in 2001. Each point represents the price of gas at
              that time as well as loctation. The y-axis displays the city, while the x-axis displays year (broken into
               months). This allows us to take a look into the trend of of gas prices in more densly populated areas.
             
