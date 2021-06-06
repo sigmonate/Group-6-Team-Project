@@ -26,6 +26,8 @@ shinyServer(function(input, output) {
             separate(date, c("month", "year")) %>%
             filter(year == input$date) %>%
             select(input$Cityone, month) 
+        
+        data3$month = factor(data3$month, levels = month.abb)
 
         y <- input$Cityone
         if (input$Cityone == "Chicago") {
@@ -33,7 +35,8 @@ shinyServer(function(input, output) {
                 geom_point(mapping = aes(x = month, Chicago))
         } else if (input$Cityone == "Seattle") {
             ggplot(data3) +
-                geom_point(mapping = aes(x = month, Seattle))
+                geom_point(mapping = aes(x = month, Seattle)) +
+                geom_line(mapping = aes(x = as.numeric(month), Seattle), color="red")
         } else if (input$Cityone == "Boston") {
             ggplot(data3) +
                 geom_point(mapping = aes(x = month, Boston))
