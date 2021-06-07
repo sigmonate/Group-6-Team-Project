@@ -22,7 +22,8 @@ shinyServer(function(input, output) {
     output$firstDistPlot <- renderPlot({
         
         
-        data <- read.csv('Data-1.csv')
+        data <- read.csv('Data-1.csv') %>% 
+            select(-X, -X.1, -X.2, -Date)
         # data2 <- data %>% 
         #     pivot_longer(
         #         contains("x"),
@@ -87,10 +88,10 @@ shinyServer(function(input, output) {
     })
     
     #data4 <- read.csv('Data-2.csv', sep = ',')
-    data5 <- select(data, -Date)
+    #data5 <- data
     
-    Minimum <- sapply(data5,min, na.rm = TRUE)
-    Maximum <- sapply(data5,max, na.rm = TRUE)
+    Minimum <- sapply(data,min, na.rm = TRUE)
+    Maximum <- sapply(data,max, na.rm = TRUE)
     Difference <- Maximum - Minimum
     min_frame <- as.data.frame(Minimum)
     max_frame <- as.data.frame(Maximum)
@@ -113,8 +114,8 @@ shinyServer(function(input, output) {
         
         #manipulated data
         
-        data <- read.csv('../GAS-DATA-AS-CSV2.csv')
-        data2 <- data %>% 
+        data2 <- read.csv('GAS-DATA-AS-CSV2.csv')
+        data4 <- data2 %>% 
             pivot_longer(
                 contains("x"),
                 names_to = "date",
@@ -122,7 +123,7 @@ shinyServer(function(input, output) {
                 names_repair = "unique"
             ) %>% 
             mutate(date = substr(date, 2, 10))
-        data3 <- data2 %>% 
+        data3 <- data4 %>% 
             pivot_wider(date,
                         names_from = "City",
                         values_from = "price") %>%
