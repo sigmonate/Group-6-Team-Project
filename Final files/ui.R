@@ -59,13 +59,12 @@ shinyUI(navbarPage("Gas Prices in US Cities",
                             # Sidebar with a select year and city
                             sidebarLayout(
                               sidebarPanel(
-                                selectInput("Cityone", label = "City",
-                                            choices = list("Boston" = 'Boston', "Chicago" = 'Chicago',
+                                selectInput("City1", label = "City", choices = list("Boston" = 'Boston', "Chicago" = 'Chicago',
                                                            "Cleveland" = 'Cleveland', "Denver" = 'Denver',
                                                            "Houston" = 'Houston', "Los Angeles" = 'LosAngeles',
                                                            "Miami" = 'Miami', "New York" = 'NewYork',
                                                            "San Francisco" = 'SanFrancisco', "Seattle" = 'Seattle'),
-                                            selected = "Chicago"),
+                                            selected = "Boston"),
                                 selectInput("date", label = "Date",
                                             choices = list("2001" = '01', "2002" = '02',
                                                            "2003" = '03', "2004" = '04', "2005" = '05', "2006" = '06',
