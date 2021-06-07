@@ -10,6 +10,8 @@ shinyServer(function(input, output) {
 
     output$distPlot <- renderPlot({
         
+        #manipulated data
+        
         data <- read.csv('../GAS-DATA-AS-CSV2.csv')
         data2 <- data %>% 
             pivot_longer(
@@ -31,7 +33,7 @@ shinyServer(function(input, output) {
 
         y <- input$Cityone
         
-        
+        #static if/else. Wouldn't work any other way
         if (input$Cityone == "Chicago") {
             ggplot(data3) +
                 geom_point(mapping = aes(x = month, Chicago)) +

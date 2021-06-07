@@ -1,12 +1,12 @@
 library(shiny)
 
-# Define UI for application that draws a histogram
+# Define UI for application that draws a line graph
 shinyUI(fluidPage(
 
     # Application title
     titlePanel("Monthly Gas Prices in Major U.S. Urban Areas"),
 
-    # Sidebar with a slider input for number of bins
+    # Sidebar with a select year and city
     sidebarLayout(
         sidebarPanel(
             selectInput("Cityone", label = "City",
