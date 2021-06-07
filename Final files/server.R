@@ -188,7 +188,8 @@ shinyServer(function(input, output) {
         
     })
     
-    output$secondtextOutput <- renderText({
+
+    output$secondTextOutput <- renderText({
         paste("This chart was designed to answer the question: 'How gas prices have changed in urban areas in 
               the US over time?' To answer this a chart was created to display the monthly gas prices in a some
               of the major cities in the United States, starting in 2001. Each point represents the price of gas at
