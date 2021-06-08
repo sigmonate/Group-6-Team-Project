@@ -5,8 +5,9 @@ library(shiny)
 shinyUI(navbarPage("Gas Prices in US Cities",
                    
                    tabPanel("Introduction",
-                            textOutput("introTextOutput")),
-                   
+                            textOutput("introTextOutput"),
+                            img(src = "gasimage.jpg", height = 425, width = 640)
+                    ),
                    
                    
                    tabPanel("City vs City Gas Price Relationship Over Time",
