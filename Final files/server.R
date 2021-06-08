@@ -2,6 +2,12 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(tidyr)
+gasdata1 <- read.csv('Data-1.csv') %>% 
+    select(-X, -X.1, -X.2, -Date)
+
+gas.data <- read.csv('Data-2.csv')
+
+gasdata2 <- read.csv('GAS-DATA-AS-CSV2.csv')
 
 shinyServer(function(input, output) {
     
@@ -22,8 +28,7 @@ shinyServer(function(input, output) {
     output$firstDistPlot <- renderPlot({
         
         
-        data <- read.csv('Data-1.csv') %>% 
-            select(-X, -X.1, -X.2, -Date)
+        
         # data2 <- data %>% 
         #     pivot_longer(
         #         contains("x"),
@@ -43,7 +48,7 @@ shinyServer(function(input, output) {
         y<- input$Citytwo
         
         
-        ggplot(data,aes_string(x, y))+
+        ggplot(gasdata1,aes_string(x, y))+
             geom_point(col = "blue")+
             xlab(paste("Price in", input$Cityone))+
             ylab(paste("Price in", input$Citytwo))+
@@ -54,7 +59,7 @@ shinyServer(function(input, output) {
     
     output$gasmaxTable <- renderTable({
         
-        gas.data <- read.csv('Data-2.csv')
+        
         
         max.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -65,7 +70,7 @@ shinyServer(function(input, output) {
     
     output$gasminTable <- renderTable({
         
-        gas.data <- read.csv('Data-2.csv')
+        #gas.data <- read.csv('Data-2.csv')
         
         min.gas.prices <- gas.data %>% 
             select(Date, City, Gas.Prices..dollars.per.gallon.) %>% 
@@ -90,8 +95,8 @@ shinyServer(function(input, output) {
     #data4 <- read.csv('Data-2.csv', sep = ',')
     #data5 <- data
     
-    Minimum <- sapply(data,min, na.rm = TRUE)
-    Maximum <- sapply(data,max, na.rm = TRUE)
+    Minimum <- sapply(gasdata1,min, na.rm = TRUE)
+    Maximum <- sapply(gasdata1,max, na.rm = TRUE)
     Difference <- Maximum - Minimum
     min_frame <- as.data.frame(Minimum)
     max_frame <- as.data.frame(Maximum)
@@ -114,8 +119,8 @@ shinyServer(function(input, output) {
         
         #manipulated data
         
-        data2 <- read.csv('GAS-DATA-AS-CSV2.csv')
-        data4 <- data2 %>% 
+        
+        data4 <- gasdata2 %>% 
             pivot_longer(
                 contains("x"),
                 names_to = "date",
